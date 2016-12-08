@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Tape from './components/tape/index';
-import ControlPanel from './components/control-panel/index';
 import MusicList from './components/music-list/index';
+import ControlPanel from './components/control-panel/index';
 
 var MusicPanel = React.createClass({
   getInitialState: function() {
@@ -50,6 +50,7 @@ var MusicPanel = React.createClass({
       index: index
     });
     audio.setAttribute('src',this.state.musicList[index].path);
+    document.title = this.state.musicList[index].name + ' - imusic';
     audio.play();
   },
   componentDidMount: function() {
@@ -60,12 +61,14 @@ var MusicPanel = React.createClass({
         index: that.state.index == (that.state.musicLength - 1) ? 0 : (that.state.index + 1)
       });
       audio.setAttribute('src',that.state.musicList[that.state.index].path);
+      document.title = that.state.musicList[that.state.index].name + ' - imusic';
       audio.play();
     });
   },
   onMusicsGet: function(musics) {
     var audio = ReactDOM.findDOMNode(this.refs.audio);
     audio.setAttribute('src',musics[0].path);
+    document.title = musics[0].name + ' - imusic';
     this.setState({
       musicList: musics,
       musicLength: musics.length
@@ -74,10 +77,10 @@ var MusicPanel = React.createClass({
   render: function() {
     return (
       <div>
+        <audio ref="audio" id="audio" style={{display: "none"}}><span>HTML5 audio not supported</span></audio>
         <Tape paused={this.state.paused} />
         <ControlPanel musicLength={this.state.musicLength} index={this.state.index} paused={this.state.paused} changeState={this.onStateChanged} changeMusic={this.onMusicChanged} stopped={this.state.stopped}/>
-        <MusicList source="/api/get_musics" getMusics={this.onMusicsGet} changeMusic={this.onMusicChanged}/>
-        <audio ref="audio" id="audio" style={{display: "none"}}><span>HTML5 audio not supported</span></audio>
+        <MusicList source="/api/get_musics" getMusics={this.onMusicsGet} changeMusic={this.onMusicChanged} changeState={this.onStateChanged}/>
       </div>
     );
   }
