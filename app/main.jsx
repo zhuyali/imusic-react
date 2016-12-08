@@ -1,7 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import ReactDOM from 'react-dom';
 
-var MusicPanel = require('./music-panel');
+import MusicPanel from './music-panel';
 
 ReactDOM.render(
   <MusicPanel />,

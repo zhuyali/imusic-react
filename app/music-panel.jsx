@@ -1,9 +1,9 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-var Tape = require('./components/tape/index');
-var ControlPanel = require('./components/control-panel/index');
-var MusicList = require('./components/music-list/index');
+import Tape from './components/tape/index';
+import ControlPanel from './components/control-panel/index';
+import MusicList from './components/music-list/index';
 
 var MusicPanel = React.createClass({
   getInitialState: function() {
