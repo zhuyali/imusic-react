@@ -118,7 +118,7 @@ var ControlPanel = React.createClass({
         <li id="stop" className={"imusic-control-stop control" + (this.state.stopPressed ? " imusic-control-pressed" : "")} onClick={this.handleClick}>
         Stop<span>◼</span>
         </li>
-        <audio id="soundAudio" ref="audio" src='./click.mp3'><span>HTML5 audio not supported</span></audio>
+        <audio id="soundAudio" ref="audio" src='./assets/click.mp3'><span>HTML5 audio not supported</span></audio>
         </ul>
     );
   }
