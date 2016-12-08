@@ -34,7 +34,7 @@ var config = {
       loader: 'style!css'
     }, {
       test: /\.(png|jpg)$/,
-      loader: 'url?limit=25000'
+      loader: 'url?limit=50000'
     }]
   }
 };
