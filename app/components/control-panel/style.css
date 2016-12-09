@@ -53,11 +53,11 @@ ul.imusic-controls li {
   user-select: none;
 }
 
-ul.imusic-controls li:first-child {
+#play {
   border-radius: 8px 0 0 8px;
 }
 
-ul.imusic-controls li:last-child {
+#stop {
   border-radius: 0px 8px 8px 0px;
 }
 
