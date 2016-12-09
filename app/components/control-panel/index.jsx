@@ -29,7 +29,8 @@ var ControlPanel = React.createClass({
       case "play":
         this.setState({
           paused: false,
-          playPressed: true
+          playPressed: true,
+          pausePressed: false
         });
         this.props.changeState(false, false);
         setTimeout(function() {
@@ -39,16 +40,19 @@ var ControlPanel = React.createClass({
         }, 100);
         break;
       case "pause":
-        this.setState({
-          paused: true,
-          pausePressed: true
-        });
-        this.props.changeState(true, false);
-        setTimeout(function() {
-          that.setState({
+        if (this.state.paused) {
+          this.setState({
+            paused: false,
             pausePressed: false
-          })
-        }, 100);
+          });
+          this.props.changeState(false, false);
+        } else {
+          this.setState({
+            paused: true,
+            pausePressed: true
+          });
+          this.props.changeState(true, false);
+        }
         break;
       case "pre":
         if(index == 0) {
@@ -57,6 +61,7 @@ var ControlPanel = React.createClass({
           index--;
         }
         this.setState({
+          pausePressed: false,
           paused: false,
           prePressed: true
         });
@@ -75,6 +80,7 @@ var ControlPanel = React.createClass({
           index++;
         }
         this.setState({
+          pausePressed: false,
           paused: false,
           nextPressed: true
         });
@@ -88,7 +94,7 @@ var ControlPanel = React.createClass({
         break;
       case "stop":
         this.setState({
-          paused: true,
+          pausePressed: false,
           stopPressed: true
         });
         this.props.changeState(true, true);

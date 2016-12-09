@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9409dd20f3b4c4ce2a09"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5e603114300b2a565435"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -2025,7 +2025,8 @@
 	      case "play":
 	        this.setState({
 	          paused: false,
-	          playPressed: true
+	          playPressed: true,
+	          pausePressed: false
 	        });
 	        this.props.changeState(false, false);
 	        setTimeout(function () {
@@ -2035,16 +2036,19 @@
 	        }, 100);
 	        break;
 	      case "pause":
-	        this.setState({
-	          paused: true,
-	          pausePressed: true
-	        });
-	        this.props.changeState(true, false);
-	        setTimeout(function () {
-	          that.setState({
+	        if (this.state.paused) {
+	          this.setState({
+	            paused: false,
 	            pausePressed: false
 	          });
-	        }, 100);
+	          this.props.changeState(false, false);
+	        } else {
+	          this.setState({
+	            paused: true,
+	            pausePressed: true
+	          });
+	          this.props.changeState(true, false);
+	        }
 	        break;
 	      case "pre":
 	        if (index == 0) {
@@ -2053,6 +2057,7 @@
 	          index--;
 	        }
 	        this.setState({
+	          pausePressed: false,
 	          paused: false,
 	          prePressed: true
 	        });
@@ -2071,6 +2076,7 @@
 	          index++;
 	        }
 	        this.setState({
+	          pausePressed: false,
 	          paused: false,
 	          nextPressed: true
 	        });
@@ -2084,7 +2090,7 @@
 	        break;
 	      case "stop":
 	        this.setState({
-	          paused: true,
+	          pausePressed: false,
 	          stopPressed: true
 	        });
 	        this.props.changeState(true, true);
