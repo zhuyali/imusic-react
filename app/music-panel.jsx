@@ -8,16 +8,16 @@ import ControlPanel from './components/control-panel/index';
 var MusicPanel = React.createClass({
   getInitialState: function() {
     return {
-      paused: true,
+      paused: false,
       musicList: [],
       index: 0,
       musicLength: 0,
-      stopped: false
+      stopped: true
     };
   },
   onStateChanged: function(paused, stopped) {
     var audio = ReactDOM.findDOMNode(this.refs.audio);
-    if (paused && !this.state.stopped && !stopped){
+    if (paused && !stopped){
       audio.pause();
       this.setState({
         paused: true,
@@ -78,7 +78,7 @@ var MusicPanel = React.createClass({
     return (
       <div>
         <audio ref="audio" id="audio" style={{display: "none"}}><span>HTML5 audio not supported</span></audio>
-        <Tape paused={this.state.paused} />
+        <Tape paused={this.state.paused} stopped={this.state.stopped} />
         <ControlPanel musicLength={this.state.musicLength} index={this.state.index} paused={this.state.paused} changeState={this.onStateChanged} changeMusic={this.onMusicChanged} stopped={this.state.stopped}/>
         <MusicList source="/api/get_musics" getMusics={this.onMusicsGet} changeMusic={this.onMusicChanged} changeState={this.onStateChanged}/>
       </div>

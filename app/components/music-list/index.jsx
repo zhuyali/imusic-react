@@ -71,7 +71,7 @@ var MusicList = React.createClass({
           })
         }
         </ol>
-        </div>
+      </div>
     );
   }
 });
