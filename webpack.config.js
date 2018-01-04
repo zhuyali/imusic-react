@@ -6,7 +6,10 @@ var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 var pathToReactDom = path.resolve(node_modules, 'react-dom/dist/react-dom.min.js');
 
 var config = {
-  entry: ['webpack/hot/dev-server', path.resolve(__dirname, './app/main.jsx')],
+  entry: [
+    'webpack/hot/dev-server',
+    path.resolve(__dirname, './app/main.jsx')
+  ],
   resolve: {
     extensions: ['', '.js', '.json', '.jsx', '.css'],
     alias: {
