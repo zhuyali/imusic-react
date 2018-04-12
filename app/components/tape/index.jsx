@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './style'
+import './style.css';
 
 var Tape = React.createClass({
   render: function() {

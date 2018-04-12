@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './style';
+import './style.css';
 
 var localhost = ['localhost', '127.0.0.1'];
 

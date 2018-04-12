@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './style'
+import './style.css';
 
 var ControlPanel = React.createClass({
   getInitialState: function() {
